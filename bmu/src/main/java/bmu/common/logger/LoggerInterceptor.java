@@ -34,7 +34,10 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 		    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		        if (log.isDebugEnabled()) {
 		            log.debug("-------------------------- End -----------------------------\n");
+		    		        
 		        }
+		        
+		        
 		    }		
 	}	
 
