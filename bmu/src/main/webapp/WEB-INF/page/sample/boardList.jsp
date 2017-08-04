@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>bmu</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/layout/header.jsp" %>
 </head>
 <body>
-<h2>게시판 목록</h2>
+<h2>Board List</h2>
 <table style="border:1px solid #ccc">
     <colgroup>
         <col width="10%"/>
@@ -17,10 +19,10 @@
     </colgroup>
     <thead>
         <tr>
-            <th scope="col">글번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">조회수</th>
-            <th scope="col">작성일</th>
+            <th scope="col">NO</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">HIT</th>
+            <th scope="col">DATE</th>
         </tr>
     </thead>
     <tbody>
@@ -45,4 +47,5 @@
     </tbody>
 </table>
 </body>
+<%@include file="/layout/footer.jsp" %>
 </html>
