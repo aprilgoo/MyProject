@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+  <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,11 +6,11 @@
 <title>bmu</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="/layout/header.jsp" %>
+<%@ include file="/layout/include-header.jspf" %>
 </head>
 <body>
 <h2>Board List</h2>
-<table style="border:1px solid #ccc">
+<table style="border:1px solid #ccc" class="board_list">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
@@ -31,7 +31,10 @@
                 <c:forEach items="${list }" var="row">
                     <tr>
                         <td>${row.IDX }</td>
-                        <td>${row.TITLE }</td>
+                        <td class="title">
+                        	<a href="#this" name="title">${row.TITLE}</a>
+                        	<input type="hidden" id="IDX" value=" ${row.IDX}"></td>
+                        	<!-- type=hidden으로 글 번호를 숨김 -->
                         <td>${row.HIT_CNT }</td>
                         <td>${row.CREA_DTM }</td>
                     </tr>
@@ -46,6 +49,48 @@
          
     </tbody>
 </table>
+<br />
+<a href="#this" class="btn" id="write">글쓰기</a>
+<%@include file="/layout/include-body.jspf" %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#write").on("click", function(e){ //글쓰기 버튼
+		e.preventDefault();
+			fn_openBoardWrite();			
+		});				
+	$("a[name='title']").on("click", function(e){ //제목
+		e.preventDefault();
+		fn_openBoardDetail($(this));
+	});	
+});
+
+function fn_openBoardWrite() {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />");
+	comSubmit.submit();
+}
+
+function fn_openBoardDetail(obj){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
+	comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+	comSubmit.submit();	
+}
+//제목을 클릭하면 fn_openBoardDetail이라는 함수가 실행됨
+//인자값으로 $(this)를 넘김 <- 게시글 제목의 <a>태그
+//addParam -> 서버로 전송될 키와 값을 인자값으로 받음
+
+
+</script>
 </body>
-<%@include file="/layout/footer.jsp" %>
 </html>
+
+
+
+
+
+
+
+
+

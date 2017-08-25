@@ -1,0 +1,8 @@
+<%@ page pageEncoding="utf-8"%>
+<form id="commonForm" name="commonForm"></form>
+		<div class="footer">
+			Thank you :-) &copy;
+		</div>
+	</div>
+</body>
+</html> 

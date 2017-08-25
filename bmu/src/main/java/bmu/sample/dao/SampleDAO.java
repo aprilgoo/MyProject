@@ -20,5 +20,46 @@ public class SampleDAO extends AbstractDAO{
         //sample.selectBoardList가 쿼리 이름이며, Map<String,Object> map이 쿼리 실행시 필요한 변수들임
         //결과값은 형변환을 함
     }
-    
+
+	public void insertBoard(Map<String, Object> map) throws Exception {
+		insert("sample.insertBoard", map);		
+	}
+	
+	public void updateHitCnt(Map<String, Object>map) throws Exception {
+		update("sample.updateHitCnt", map);		
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("sample.selectBoardDetail", map);
+	}    
+	//게시글의 상세내용을 조회하고 해당 게시글의 조회수를 1 증가시킴
+
+	public void updateBoard(Map<String, Object> map) throws Exception {
+		update("sample.updateBoard", map);
+		
+	}
+
+	public void deleteBoard(Map<String, Object> map) throws Exception {
+		update("sample.deleteBoard", map);		
+	}
+	
+	public void insertFile(Map<String, Object> map) throws Exception{
+		insert("sample.insertFile", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception {
+		
+		return (List<Map<String, Object>>)selectList("sample.selectFileList", map);
+		//selectFile 쿼리를 호출
+	}
+	
+	public void deleteFileList(Map<String, Object> map) throws Exception{
+		update("sample.deleteFileList", map);
+	}
+
+	public void updateFile(Map<String, Object> map) throws Exception{
+		update("sample.updateFile", map);
+	}
 }

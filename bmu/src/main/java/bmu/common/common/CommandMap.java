@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class CommandMap {
 	Map<String,Object> map = new HashMap<String,Object>();
-	
+	Map<String,String> login_map = new HashMap<String,String>();
 	  
     public Object get(String key){
         return map.get(key);
@@ -21,8 +21,8 @@ public class CommandMap {
      
     public void put(String key, Object value){
         map.put(key, value);
-    }
-     
+    }    
+
     public Object remove(String key){
         return map.remove(key);
     }
@@ -58,4 +58,13 @@ public class CommandMap {
     public Map<String,Object> getMap(){
         return map;
     }
+    
+    public Map<String,String> getLoginMap() {
+		return login_map;    	    	
+    }
+    
 }
+
+
+
+

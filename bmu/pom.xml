@@ -228,6 +228,19 @@
 			<version>1.9.13</version>
 		</dependency>
 		
+		<!-- paging -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.6.4</version>
+		</dependency>
+	 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.6.4</version>
+		</dependency>
+				
 		<!-- MultipartHttpServletRequset -->
 		<dependency>
             <groupId>commons-io</groupId>
@@ -248,13 +261,7 @@
 			<version>1.10</version>
 		</dependency>
 		
-		<!-- EgovProperty -->
-		<dependency>
-			<groupId>egovframework.rte</groupId>
-			<artifactId>egovframework.rte.fdl.property</artifactId>  
-			<version>2.7.0</version>
-		</dependency>
-		
+	
 		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -299,8 +306,30 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>	  
-	</dependencies>
+		</dependency>	 
+		
+		
+		 <dependency>
+  			<groupId>org.lazyluke</groupId>
+  		  <artifactId>log4jdbc-remix</artifactId>
+ 	  	 <version>0.2.7</version>
+		</dependency>
+		
+		<!-- cglib ibatis -->
+    	<dependency>
+	  		<groupId>cglib</groupId>
+	  		<artifactId>cglib</artifactId>
+  		<version>2.2</version>
+    	</dependency> 
+
+  	 <!-- spring orm -->
+  	  <dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-orm</artifactId>
+  		<version>3.1.0.RELEASE</version>
+  	 </dependency> 	
+
+   		</dependencies>
 	
 	
     <build>

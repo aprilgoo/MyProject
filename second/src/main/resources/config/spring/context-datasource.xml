@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+
+<!-- &를 참조자로 인식하기 때문에 &amp;로 바꾸어줘야 함 -->
+<!-- dataSourceSpied(log4j-remix가 쿼리를 정렬해줌 -->
+<bean destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" id="dataSourceSpied">
+<property value="com.mysql.jdbc.Driver" name="driverClassName"/>
+<property value="jdbc:mysql://localhost/shop?useUnicode=true&amp;characterEncoding=utf8" name="url"/>
+<property value="root" name="username"/>
+<property value="P@ssw0rd" name="password"/>
+</bean>
+
+
+<bean class="net.sf.log4jdbc.Log4jdbcProxyDataSource" id="dataSource">
+<constructor-arg ref="dataSourceSpied"/>
+<property name="logFormatter">
+<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+<property value="MULTI_LINE" name="loggingType"/>
+<property value="SQL : " name="sqlPrefix"/>
+</bean>
+</property>
+</bean>
+</beans>

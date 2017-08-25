@@ -37,5 +37,17 @@
        	 <!--  서블릿에 어떤 요청을 할 때 .do를 통해서만 요청을 전달함
        	 .html의 직접적인 호출 등을 허락되지 않음 -->
 		</servlet-mapping>
+		<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+		<param-name>encoding</param-name>
+		<param-value>utf-8</param-value>
+		</init-param>
+		</filter>
+		<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		</filter-mapping>
 
 </web-app>

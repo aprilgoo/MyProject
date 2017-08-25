@@ -33,6 +33,7 @@
 		<appender-ref ref ="console-infolog" />
 	</logger>
 	
+	<!-- logger을 추가하여 결과 Query를 나오게 함  -->
 	<logger name="jdbc.resultsettable" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref ="console" />
@@ -45,3 +46,5 @@
 	</root>
 	
 </log4j:configuration>
+
+<!--  개발시에만 로그를 남기고 실제 운영때는 삭제하는 것이 좋음(성능문제) -->

@@ -1,9 +1,11 @@
 package bmu.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.plexus.util.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,4 +62,7 @@ public class AbstractDAO {
         printQueryId(queryId);
         return sqlSession.selectList(queryId,params);
     }
+    
+    
+    
 }
