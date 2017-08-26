@@ -1,4 +1,4 @@
-   <%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,9 @@
 <%@ include file="/layout/include-header.jspf" %>
 </head>
 <body>
-<h2>Board List</h2>
-<form id="frm" name="frm" method="post">
+<h2>Search List</h2>
+${map.count}개의 게시물이 있습니다.
+<form id="frm" name="frm">
 <table style="border:1px solid #ccc" class="board_list">
     <colgroup>
         <col width="10%"/>
@@ -26,27 +27,15 @@
             <th scope="col">DATE</th>
         </tr>
     </thead>
-    <tbody>
-        <c:choose>
-            <c:when test="${fn:length(map.list) > 0}">
-                <c:forEach var="row" items="${map.list}">
+    <tbody>       
+                <c:forEach items="${map.list}" var="row">
                     <tr>
                         <td>${row.IDX }</td>
-                        <td class="title">
-                        	<a href="#this" name="title">${row.TITLE}</a>                 
-                        	<input type="hidden" id="IDX" value=" ${row.IDX}"></td>               
-                        	<!-- type=hidden으로 글 번호를 숨김 -->
+                        <td class="title"><a href="#this" name="title">${row.TITLE}</a>      
                         <td>${row.HIT_CNT }</td>
                         <td>${row.CREA_DTM }</td>
                     </tr>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <tr>
-                    <td colspan="4">조회된 결과가 없습니다.</td>
-                </tr>
-            </c:otherwise>
-        </c:choose>                
+                </c:forEach>        
     </tbody>
 </table>	      
 <br />
@@ -56,9 +45,10 @@
 	<option value="title" <c:out value="${map.opt == 'title'?'selected':''}" />>제목</option>
 	<option value="contents" <c:out value="${map.opt == 'contents'?'selected':''}" />>내용</option>
 </select>
-<input size=24 name="keyword" value=" ${map.keyword}"> 
-<input type="submit" value="검색">
+<input size=24 name="keyword" value=" ${map.keyword}"></td> 
+<a href="#this" class="btn" id="search" >검색</a>
 </form>
+
 <%@include file="/layout/include-body.jspf" %>
 
 <script type="text/javascript">
@@ -73,10 +63,10 @@
 		fn_openBoardDetail($(this));
 	});		
 	
-	//	$("#search").on("click", function(e){ //검색 버튼
-	//		e.preventDefault();
-	//		fn_SearchBoard();			
-	//	});				
+		$("#search").on("click", function(e){ //검색 버튼
+			e.preventDefault();
+			fn_SearchBoard();			
+	});				
 });
 
 function fn_openBoardWrite() {
@@ -91,6 +81,12 @@ function fn_openBoardDetail(obj){
 	comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 	comSubmit.submit();	
 }
+
+function fn_SearchBoard(){
+	var comSubmit = new ComSubmit("frm");
+	comSubmit.setUrl("<c:url value='/sample/SearchBoard.do' />");	
+	comSubmit.submit();	
+}
 //제목을 클릭하면 fn_openBoardDetail이라는 함수가 실행됨
 //인자값으로 $(this)를 넘김 <- 게시글 제목의 <a>태그
 //addParam -> 서버로 전송될 키와 값을 인자값으로 받음
@@ -99,12 +95,3 @@ function fn_openBoardDetail(obj){
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

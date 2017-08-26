@@ -1,8 +1,10 @@
 package bmu.sample.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import bmu.common.dao.AbstractDAO;
@@ -62,4 +64,37 @@ public class SampleDAO extends AbstractDAO{
 	public void updateFile(Map<String, Object> map) throws Exception{
 		update("sample.updateFile", map);
 	}
+
+	public int countArticle(String opt, String keyword) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("opt", opt);
+		map.put("keyword", keyword);
+		return (int)selectOne("sample.countArticle", map);		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, String>>searchBoard(String opt, String keyword) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("opt", opt);
+		map.put("keyword", keyword);
+		return (List<Map<String, String>>)selectList("sample.searchBoard", map);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

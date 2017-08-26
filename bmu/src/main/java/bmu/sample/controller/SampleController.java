@@ -1,14 +1,17 @@
 package bmu.sample.controller;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bmu.common.common.CommandMap;
@@ -31,15 +34,25 @@ public class SampleController {
 
      
     @RequestMapping(value="/sample/openBoardList.do")
-    public ModelAndView openSampleBoardList(Map<String,Object> commandMap) throws Exception{
+    public ModelAndView openSampleBoardList(@RequestParam(defaultValue="TITLE") String opt,@RequestParam(defaultValue=" ") String keyword ,Map<String,Object>commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/sample/boardList");
          
-        List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
-        mv.addObject("list", list);
-        //서비스 로직의 결과를 ModelAndView 객체에 담아서 클라이언트(.jsp)에서 결과를 사용할 수
-        //있도록 함
-        //map과 똑같이 키와 값으로 구성         
+       /** List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
+        mv.addObject("list", list);        
+        return mv; **/              
+        List<Map<String, String>> list = sampleService.searchBoard(opt, keyword);
+     //   int count = sampleService.countArticle(opt, keyword);      
+       
+    	Map<String,Object>map = new HashMap<String, Object>();
+    	map.put("list", list);
+    //	map.put("count", count);
+    	map.put("opt", opt);
+    	map.put("keyword", keyword);
+    	mv.addObject("map", map);
+    	mv.setViewName("/sample/boardList");
+    	
         return mv;
+        
     }
     
     @RequestMapping(value="/sample/openBoardWrite.do")
@@ -105,8 +118,60 @@ public class SampleController {
     	sampleService.deleteBoard(commandMap.getMap());
     	return mv;
     	
-    }
-    
+    } 
    
+    
 }
+    
+   /** 	
+    	String returnURL = "";    	 	
+    	String opt = (String)map.get("opt");    	//검색 옵션
+    	String condition = (String)map.get("condition"); 	//검색 내용
+    	
+    
+    	if(opt==null) {
+    		returnURL = "/sample/boardList";    		
+    	}
+    	else if(opt.equals("0")) 
+    	{
+    			
+    	}
+    	
+    	
+    	if(session.getAttribute("search") != null) {
+    		session.removeAttribute("search");
+    	}	
+    	
+    	System.out.println(request.getParameter("title"));
+    	System.out.println((String)map.get("title"));    	
+    
+    	
+    	if((list == null) || (request.getParameter("title")!=(String)map.get("title"))) {     		
+    		log.debug("검색 결과가 없습니다");
+    		returnURL = "/sample/searchList";
+    	}
+  	
+    	else if(request.getParameter("title").equals((String)map.get("title"))) {
+    		commandMap.put("title", "search");
+    	  	request.getSession().setAttribute("search", list);
+    		returnURL ="/sample/searchList";
+    		log.debug("검색 성공");
+    		}       
+    	
+    	return returnURL;
+    } }	**/
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    

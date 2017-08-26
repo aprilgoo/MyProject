@@ -83,6 +83,16 @@ public class SampleServiceImpl implements SampleService{
 		
 	}
 
+	@Override
+	public int countArticle(String opt, String keyword) throws Exception {
+		return sampleDAO.countArticle(opt, keyword);
+	}
+
+	@Override
+	public List<Map<String, String>> searchBoard(String opt, String keyword) throws Exception {
+		 return sampleDAO.searchBoard(opt, keyword);
+	}
+
 
 	
 		

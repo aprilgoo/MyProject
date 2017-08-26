@@ -10,6 +10,10 @@ public interface SampleService {
 	
 	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
 	//throws Exception : 추후 에러처리를 위함
+	
+	List<Map<String, String>> searchBoard(String opt, String keyword) throws Exception;
+	
+	public int countArticle(String opt, String keyword) throws Exception;
 
 	void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
@@ -17,6 +21,9 @@ public interface SampleService {
 
 	void updateBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	void deleteBoard(Map<String, Object> map) throws Exception;
+	void deleteBoard(Map<String, Object> map) throws Exception;		
+
+	
+	
 
 	}
