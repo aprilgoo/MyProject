@@ -8,14 +8,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  
-    <context:component-scan base-package="second"></context:component-scan>
-    
-    <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="second.common.resolver.CustomMapArgumentResolver"></bean>      
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
+    <context:component-scan base-package="second"></context:component-scan>   
 
+	    <mvc:annotation-driven>
+	        <mvc:argument-resolvers>
+	            <bean class="second.common.resolver.CustomMapArgumentResolver"></bean>      
+	        </mvc:argument-resolvers>
+   		 </mvc:annotation-driven>
      
     <mvc:interceptors>
         <mvc:interceptor>
@@ -23,8 +22,14 @@
             <bean id="loggerInterceptor" class="second.common.logger.LoggerInterceptor"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/page/sample/user_main.jsp"/>
+            <mvc:mapping path="/page/user/user_main.jsp"/>
+            <mvc:mapping path="/page/user/user_modify.jsp"/>
+            <mvc:mapping path="/page/user/user_page.jsp"/>           
             <bean id="loginInterceptor" class="second.common.login.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    <mvc:interceptor>
+            <mvc:mapping path="/page/admin/admin_main.jsp"/>     
+            <bean id="adminInterceptor" class="second.common.login.AdminInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
      
@@ -36,6 +41,6 @@
     <bean
         class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
-        p:prefix="/WEB-INF/page/" p:suffix=".jsp">
+        p:prefix="/page/" p:suffix=".jsp">
     </bean>
 </beans>

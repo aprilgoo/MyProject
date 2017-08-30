@@ -10,5 +10,14 @@
 		FROM USER	
 		WHERE USER_ID = #{user_id} && USER_PASSWORD = #{user_password}
 	]]>
-</select>     
+</select>   
+
+<select id="adminLogin" parameterType="hashmap"  resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			*			
+		FROM USER	
+		WHERE USER_ID = #{admin_id} && USER_PASSWORD = #{admin_password}
+	]]>
+</select>       
 </mapper>

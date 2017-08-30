@@ -12,6 +12,40 @@
 <title>Shopping mall</title>
 </head>
 <body>	
-	<!-- 메뉴들 -->	
-		<a href="/index.jsp">Home</a>
 
+
+
+	<!-- 메뉴들 -->		
+<% 	if(session.getAttribute("user")!=null) { %>
+
+		
+		<a href="/index.jsp">HOME</a>
+		<a href="/board/openSellList.do">PRODUCT LIST</a>
+		<a href="/page/user/user_logout.jsp">LOGOUT</a>
+		<a href="/page/user/user_page.jsp">MYPAGE</a>
+
+<% 	} else if(session.getAttribute("admin")!=null) { %>		
+			
+		<a href="/index.jsp">HOME</a>
+		<a href="/board/openSellList.do">PRODUCT LIST</a>
+		<a href="/page/user/user_login.jsp">LOGOUT</a>
+		<a href="/page/admin/admin_main.jsp">ADMIN</a>
+	
+		
+<% 	}  	else {  %>
+		
+		<a href="/index.jsp">HOME</a>
+		<a href="/board/openSellList.do">PRODUCT LIST</a>
+		<a href="/page/user/user_login.jsp">LOGIN</a>
+		<a href="/page/user/user_join.jsp">JOIN</a>
+				
+<% 		}   	%>
+
+<script>
+	function SQL_Injection_Prevention($get_str) {
+		return eregi_replace(
+				"(select | union | insert | update | delete | drop | \" | \' | # | \/\* | \*\/ | \\\ | \; )" , "" , $get_Str);
+		}
+</script>
+
+</body>

@@ -14,4 +14,9 @@ public class LoginDAO extends AbstractDAO {
 		return (Map<String, Object>)selectOne("login.openLoginSession", map);
 	
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> adminLogin(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>)selectOne("login.adminLogin", map);
+	}
 }

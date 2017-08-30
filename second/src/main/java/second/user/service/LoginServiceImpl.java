@@ -24,4 +24,10 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.openLoginSession(map);
 				
 	}
+
+	@Override
+	public Map<String, Object> adminLogin(Map<String, Object> map) throws Exception {
+		
+		return loginDAO.adminLogin(map);
+	}
 }

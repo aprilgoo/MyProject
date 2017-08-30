@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
+<%@ include file="/page/layout/header.jspf" %>
 <html>
 <head>
 </head>
@@ -15,7 +11,12 @@
 		<tbody>
 			<tr>
 				<th scope="row">회원 타입</th>
-				<td><input type="text" name="user_type"></input></td>
+				<td>
+					<select name="user_type">
+						<option value="사용자">사용자</option>
+						<option value="판매자">판매자</option>
+					</select>
+				</td>				
 			</tr>	
 			<tr>
 				<th scope="row">아이디</th>
@@ -28,14 +29,11 @@
 			<tr>
 				<th scope="row">이름</th>
 				<td><input type="text" name="user_name" ></input></td>
-			</tr>	
-			<tr>
-				<th scope="row">생일</th>
-				<td><input type="text" name="birth" ></input></td>
-			</tr>
+			</tr>		
 			<tr>
 				<th scope="row">성별</th>
-				<td><input type="text" name="gender" ></input></td>
+				<td><input type="checkbox" name="gender" >남</input></td>
+				<td><input type="checkbox" name="gender" >여</input></td>
 			</tr>
 			<tr>
 				<th scope="row">이메일</th>
@@ -54,6 +52,7 @@
 	
 	 <a href="#this" id="join">가입하기</a>
 	</form>
+	<%@ include file="/page/layout/footer.jspf" %>
 <script type="text/javascript">
         $(document).ready(function(){                  
             $("#join").on("click", function(e){

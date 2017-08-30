@@ -44,7 +44,7 @@ public class LoginController {
     @RequestMapping(value="/user/login_Form.do") 
     public ModelAndView login_Form() throws Exception {
     	log.debug("로그인 페이지로 이동합니다");
-    	ModelAndView mv = new ModelAndView("redirect:/page/user/loginpage.jsp");     	
+    	ModelAndView mv = new ModelAndView("redirect:/page/user/user_login.jsp");     	
     	return mv;    	 	
     }    
 	
@@ -55,28 +55,27 @@ public class LoginController {
      	Map<String,Object>map = new HashMap<String, Object>();
     	map = loginService.openLoginSession(commandMap.getMap());    
     	
-    	if(session.getAttribute("user") != null) {
-    		session.removeAttribute("user");
-    		    	}	
+	    	if(session.getAttribute("user") != null) {
+	    		session.removeAttribute("user");
+	    	}	
     	
-    	if(map!=null) {
-    	    	
-    		String id = (String)map.get("user_id");		
-        	String password = (String)map.get("user_password");    
-    	
-        	if (request.getParameter("user_id").equals(id) && request.getParameter("user_password").equals(password)) {    		
-    	  	log.debug("로그인되었습니다");
-    	  	commandMap.put("user_id", "user");
-    	  	commandMap.put("user_type", "일반 회원");
-    	  	request.getSession().setAttribute("user", map);
-    	  	returnURL = "redirect:/page/user/user_main.jsp";      
-    		return returnURL;		
-        	}     	    
-    	} 
+         	if (request.getParameter("user_id").equals((String)map.get("user_id")) && request.getParameter("user_password").equals((String)map.get("user_password"))) {    		
+	    	  	log.debug("로그인되었습니다");
+	    	  	commandMap.put("user_id", "user");
+	    	  	commandMap.put("user_type", "사용자");
+	    	  	request.getSession().setAttribute("user", map);
+	    	  	returnURL = "redirect:/page/user/user_main.jsp";      
+	    		return returnURL;		
+        	} 	    
+         	
+         	else {       
     			
-    	log.debug("아이디와 비밀번호를 확인하세요");    	    	
-    	returnURL = "redirect:/page/user/loginpage.jsp";
-    	return returnURL;    	   	
+	    	log.debug("아이디와 비밀번호를 확인하세요");    	    	
+	    	returnURL = "redirect:/page/user/user_login.jsp";
+	    	return returnURL;    	
+	    	
+    		}
+         	
     }
     
 
@@ -90,20 +89,3 @@ public class LoginController {
     
 }
 
-
-
-/** 	else if(request.getParameter("user_id")==null)    	
-{
-	
-	if((String)map.get("user_id")==null || (request.getParameter("user_id")!=(String)map.get("user_id"))) {
-		log.debug("아이디를 확인하세요");
-	}
-	
-}
-	
-else if(request.getParameter("user_password")==null) {
-		if((String)map.get("user_password") == null  || (request.getParameter("user_password")!=(String)map.get("user_password")))
-				{
-		log.debug("비밀번호를 확인해주세요");
-	}      		
-} **/

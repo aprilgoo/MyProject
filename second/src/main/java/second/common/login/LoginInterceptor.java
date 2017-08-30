@@ -1,11 +1,8 @@
- package second.common.login;
+package second.common.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -18,7 +15,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		try {
 			//user or admin이라는 세션key를 가진 정보가 null일 경우 로그인 페이지로 이동
-			if(request.getSession().getAttribute("user") == null || request.getSession().getAttribute("admin") == null) {
+			if(request.getSession().getAttribute("user") == null) {
 				log.debug("세션key가 넘어오지 않음");
 				response.sendRedirect("/");
 				return false;				

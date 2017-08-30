@@ -13,15 +13,15 @@
 <a href="#this" id="drop">탈퇴하기</a>
 
 <script type="text/javascript">
-	${document}.ready(function(){
-		${"#modify"}.on("click", function(e){
+	$(document).ready(function(){
+		$("#modify").on("click", function(e){
 			e.preventDefault();
 			fn_openUserModify();			
 		});		
 	});
 	
-	${document}.ready(function(){
-		${"#drop"}.on("click", function(e){
+	$(document).ready(function(){
+		$("#drop").on("click", function(e){
 			e.preventDefault();
 			fn_openUserDrop();			
 		});		
