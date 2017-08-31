@@ -6,8 +6,7 @@ pageEncoding="utf-8"%>
 <%@ include file="/page/layout/header.jspf" %>
 </head>
 <body>
-    <form id="frm">
-    <!--  사진, 동영상 등 글자가 아닌 파일은 모두 multipart 형식의 데이터여야 한다 -->
+    <form id="frm">  
         <table class="board_view">
             <colgroup>
                 <col width="15%">

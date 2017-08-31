@@ -37,5 +37,10 @@ public class BoardDAO extends AbstractDAO {
 		update("board.deleteBoard", map);
 		
 	}
+	
+	public void insertCart(Map<String, Object> map) throws Exception {
+		insert("board.insertCart", map);
+		
+	}
 
 }

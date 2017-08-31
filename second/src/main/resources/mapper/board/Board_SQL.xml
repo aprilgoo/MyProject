@@ -77,6 +77,22 @@
 					)  	
 					]]>
 			</insert>
+			
+	<insert id="insertCart" parameterType="hashmap" >
+     	<![CDATA[
+     		INSERT INTO CART (     	
+     			PRO_NO,		
+     			PRO_NAME,
+     			NUMBERS
+     			   )  			
+     		VALUE (
+     			#{PRO_NO},     			
+     			#{PRO_NAME},
+     			#{NUMBERS}
+     			    					     			
+     			)      	
+     	]]>     
+     </insert> 
  
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
  

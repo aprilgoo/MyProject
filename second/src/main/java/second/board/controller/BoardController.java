@@ -96,12 +96,20 @@ public class BoardController {
     @RequestMapping(value="/board/deleteBoard.do")
     
     public ModelAndView deleteBoard(CommandMap commandMap) throws Exception {
-    	ModelAndView mv = new ModelAndView("redirect:/board/openSellList.do");
-    	 
+    	ModelAndView mv = new ModelAndView("redirect:/board/openSellList.do");    	 
     	boardService.deleteBoard(commandMap.getMap());
     	return mv;
     	
-    }   
+    }      
+	
+	
+	@RequestMapping(value="/board/insertCart.do")
+	public ModelAndView insertCart(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/cart/openCartList.do");	
+
+		boardService.insertCart(commandMap.getMap());	
+		return mv;		
+	}
     
 }
 
